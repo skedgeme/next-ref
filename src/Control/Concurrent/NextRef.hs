@@ -3,9 +3,15 @@
     expensive consumer from running unnecessarily. Crucially the consumer must
     be able to tolerate missing some updates.
 
-    'NextRef' provides non-blocking writes, a blocking reads, and non-blocking reads.
+    'NextRef' provides non-blocking writes, blocking reads, and non-blocking 
+    reads.
 
-    The blocking read interface ('takeNextRef') will not necessarily present all values. 
+    The blocking read interface ('takeNextRef') will not necessarily present 
+    all values. 
+
+    Additionally the 'NextRef' can be 'closed'. This is useful to graceful
+    shutdown the consumer when the producer closes the 'NextRef'
+    
 -}
 module Control.Concurrent.NextRef 
   ( NextRef 
@@ -24,7 +30,7 @@ import Data.IORef
 
 -- | Status is used to 
 data Status = Open | Closed
-  deriving (Show, Eq)
+  deriving (Show, Eq, Ord, Read, Enum, Bounded)
 
 -- | A concurrency primitive for a slow consumer 
 data NextRef a = NextRef  
