@@ -4,12 +4,6 @@ import Control.Concurrent.NextRef
 import GHC.Conc
 import Control.Monad (void, replicateM_)
 
---  , newNextRef
---  , takeNext
---  , modifyNextVar 
---  , close
---  , open
-
 while :: IO Bool -> IO () -> IO ()
 while test act = test >>= \case 
   True  -> act >> while test act
@@ -33,7 +27,7 @@ main = hspec $ describe "NextRef" $ do
     replicateM_ 10 $ writeNextRef ref 2
     True `shouldBe` True 
   
-  it "readLast does block" $ do
+  it "readLast does not block" $ do
     ref <- newNextRef ()
     takeNextRef ref
     readLast ref
