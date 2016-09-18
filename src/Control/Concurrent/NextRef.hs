@@ -28,11 +28,15 @@ module Control.Concurrent.NextRef
 import Control.Concurrent.STM
 import Data.IORef
 
--- | Status is used to 
+-- | Status is used to prevent future reads. When the status is 'Closed'
+--   'takeNextRef' will always return 'Nothing'. When the status is 
+--   open it will return Just. This is based off of the design of 'TMQueue'
+--   from the 'stm-chans' package
 data Status = Open | Closed
   deriving (Show, Eq, Ord, Read, Enum, Bounded)
 
--- | A concurrency primitive for a slow consumer 
+-- | A concurrency primitive for a slow consumer that can tolerate
+--   missing some updates.
 data NextRef a = NextRef  
   { nrAccum     :: IORef a
   , nrNextValue :: TMVar a
