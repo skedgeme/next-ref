@@ -1,5 +1,5 @@
 name:                next-ref
-version:             0.1.0.0
+version:             0.1.0.1
 synopsis:            A concurrency primitive for a slow consumer.
 description:         A concurrency primitive for a slow consumer that can tolerate missing some updates.
 license:             BSD3

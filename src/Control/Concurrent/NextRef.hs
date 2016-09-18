@@ -31,7 +31,7 @@ import Data.IORef
 -- | Status is used to prevent future reads. When the status is 'Closed'
 --   'takeNextRef' will always return 'Nothing'. When the status is 
 --   open it will return Just. This is based off of the design of 'TMQueue'
---   from the 'stm-chans' package
+--   from the 'stm-chans' package.
 data Status = Open | Closed
   deriving (Show, Eq, Ord, Read, Enum, Bounded)
 
