@@ -1,3 +1,4 @@
+[![Hackage](https://img.shields.io/hackage/v/next-ref.svg)](https://hackage.haskell.org/package/next-ref)
 [![Travis CI Status](https://travis-ci.org/skedgeme/next-ref.svg?branch=master)](http://travis-ci.org/skedgeme/next-ref)
 
 A concurrency primitive for a slow consumer that can tolerate missing some updates.
