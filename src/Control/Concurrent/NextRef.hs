@@ -1,4 +1,4 @@
-{-# LANGUAGE LambdaCase, RecordWildCards, BangPatterns #-}
+{-# LANGUAGE LambdaCase, RecordWildCards, BangPatterns, CPP #-}
 {-| This package contains a concurrency primitive which can be used to limit an
     expensive consumer from running unnecessarily. Crucially the consumer must
     be able to tolerate missing some updates.
@@ -27,6 +27,9 @@ module Control.Concurrent.NextRef
   ) where
 import Control.Concurrent.STM
 import Data.IORef
+#if MIN_VERSION_base(4,8,0)
+import Control.Applicative
+#endif
 
 -- | Status is used to prevent future reads. When the status is 'Closed'
 --   'takeNextRef' will always return 'Nothing'. When the status is 
