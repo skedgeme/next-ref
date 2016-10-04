@@ -27,7 +27,7 @@ module Control.Concurrent.NextRef
   ) where
 import Control.Concurrent.STM
 import Data.IORef
-#if MIN_VERSION_base(4,8,0)
+#if !MIN_VERSION_base(4,8,0)
 import Control.Applicative
 #endif
 
